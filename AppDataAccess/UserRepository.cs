@@ -21,14 +21,16 @@ namespace AppDataAccess
             usr1.Salt = Md5Hash.GenerateSalt(10);
             usr1.Password = Md5Hash.ComputeHash("1122", usr1.Salt);
             usr1.Roles = new List<Role>() { new Role() { Name = "Player" } };
-            usr1.Regions = new List<Region>() { new Region() { Name = "b_game" } };
+            usr1.Regions = new List<Region>() { new Region() };
 
             User usr2 = new User();
             usr2.UserName = "Hassan";
             usr2.Salt = Md5Hash.GenerateSalt(10);
             usr2.Password = Md5Hash.ComputeHash("1133", usr2.Salt);
             usr2.Roles = new List<Role>() { new Role() { Name = "Admin" } };
-            usr2.Regions = new List<Region>() { new Region() { Name = "vip_chararacter_personalize" } };
+            usr2.Regions = new List<Region>() { new Region() };
+            usr2.Regions.Add(new Region() { Name = "vip_chararacter_personalize" });
+
             users = new List<User>() { usr1, usr2 };
         }
         public User GetFirstOrDefault(Func<User, bool> filter)

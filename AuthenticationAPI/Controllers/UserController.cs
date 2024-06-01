@@ -38,7 +38,7 @@ namespace AuthenticationAPI.Controllers
                     byte[] payloadBytes = Convert.FromBase64String(encodedPayload);
                     string payload = Encoding.ASCII.GetString(payloadBytes);
                     JwtPayload jwtPayload = JsonConvert.DeserializeObject<JwtPayload>(payload);
-                    response = Request.CreateResponse(HttpStatusCode.Forbidden, new { Scope = jwtPayload.scope, Role = jwtPayload.role });
+                    response = Request.CreateResponse(HttpStatusCode.Forbidden, new { Regions = jwtPayload.scope.Replace(" ", ","), Roles = jwtPayload.role.Replace(" ", ",") });
                 }
                 else 
                 {
